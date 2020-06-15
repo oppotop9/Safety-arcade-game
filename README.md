@@ -36,9 +36,9 @@
 ### โครงสร้างพื้นฐาน
 ![diagram picture][diagram]
 
-[diagram]:  "Diagram"
+[diagram]: https://github.com/oppotop9/Safety-arcade-game/blob/master/image/diagram.png "Diagram"
 
 ### ระบบการทำงาน 
 ![flowchart picture][flowchart]
 
-[flowchart]:  "flowchart"
+[flowchart]:  https://github.com/oppotop9/Safety-arcade-game/blob/master/image/FlowCart.png "flowchart"
