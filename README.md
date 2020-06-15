@@ -30,7 +30,7 @@
 ### Manipulation Module
 - Red Dot Laser
 - RGB SMD LED
-- Brush Motor 2 ชุด
+- Brush Motor
 - LCD Display
 
 ### โครงสร้างพื้นฐาน
