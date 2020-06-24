@@ -1,8 +1,8 @@
 #include <Keypad.h>
 
-const byte ROWS = 2 ; //four rows
+const byte ROWS = 2; 
 
-const byte COLS = 1; //three columns
+const byte COLS = 1; 
 
 char keys[ROWS][COLS] = {
 
@@ -11,8 +11,8 @@ char keys[ROWS][COLS] = {
   {'B'}
 
 };
-byte rowPins[ROWS] = {8,7}; //connect to the row pinouts of the keypad
-byte colPins[COLS] = {2}; //connect to the column pinouts of the keypad
+byte rowPins[ROWS] = {4,3}; 
+byte colPins[COLS] = {2}; 
 
 Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 

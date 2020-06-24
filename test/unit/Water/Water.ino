@@ -7,7 +7,7 @@ void setup() {
 }
  
 void loop() {
-  // read the value from the sensor:
+  
   sensorValue = analogRead(sensorPin);    
   delay(1000);          
   Serial.print("sensor = " );                       
