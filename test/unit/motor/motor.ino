@@ -4,7 +4,7 @@
 
 
 // Configure the motor driver.
-CytronMD motor1(PWM_PWM, 3, 4);   
+CytronMD motor1(PWM_PWM, 8, 3);   
 
 
 // The setup routine runs once when you press reset.
