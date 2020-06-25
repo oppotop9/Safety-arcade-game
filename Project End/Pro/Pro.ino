@@ -15,6 +15,8 @@ int Water =0;
 int Trig = 5;
 int Echo = 6;
 int Flame =12;
+long Time;
+int Distance;
 OneWire oneWire(Temperature);
 DallasTemperature sensors(&oneWire);
 
@@ -24,6 +26,8 @@ pinMode(Green, OUTPUT);
 pinMode(Blue, OUTPUT);
 pinMode(Flame, INPUT);
 pinMode(laser, OUTPUT);
+pinMode(Trig, OUTPUT);
+pinMode(Echo, INPUT);
 Serial.begin(9600);
 //analogWrite(Red, 0); 
 analogWrite(Green, 255); // Green
@@ -48,7 +52,14 @@ void loop() {
   int Fire=digitalRead(Flame); // เปลวเพลิง
   sensors.requestTemperatures(); // อุณหภูมิเรียกใช้งาน
   double Temp =sensors.getTempCByIndex(0);// เเสดงจำนวน
- 
+    digitalWrite(Trig, LOW);
+    delayMicroseconds(2);
+    digitalWrite(Trig, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(Trig, LOW);
+    Time = pulseIn(Echo, HIGH);
+    Distance = Time * 0.034 / 2; //S=T*0.034
+    
   if(Water>10){
       delay(1000);
         lcd.setCursor(0, 0);
@@ -93,13 +104,22 @@ void loop() {
                 digitalWrite(laser, 1);
                                 }
                 else {
-                
-                }
-           }
+                    if (Distance<15) {
+                    lcd.setCursor(0, 0);
+                    lcd.print("Status < warning >");
+                    lcd.setCursor(0, 1);
+                    lcd.print("Beware : Hot");
+                                        }
+                        }
+                            }
             else {
-                
+                if (Distance<15) {
+                    lcd.setCursor(0, 0);
+                    lcd.print("Status < Safe >");
+                    lcd.setCursor(0, 1);
+                    lcd.print("Everything Clear");
+                                    }
+                    }
+                }
             }
-       }
-  }
-  
 }
