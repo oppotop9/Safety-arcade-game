@@ -61,13 +61,13 @@ void loop() {
     Distance = Time * 0.034 / 2; //S=T*0.034
     
   if(Water>10){
-      delay(1000);
+      
         lcd.setCursor(0, 0);
         lcd.print("   Alert !!!");
 
         lcd.setCursor(0, 1);
         lcd.print("Water Detected");
-
+        delay(1000);
         analogWrite(Green,0);
         analogWrite(Red, Adapt);
         digitalWrite(laser, 1);
@@ -76,12 +76,12 @@ void loop() {
                 }
     else  {
         if (Fire==0) {
-        delay(1000);
+        
         lcd.setCursor(0, 0);
         lcd.print("   Alert !!!");
         lcd.setCursor(0, 1);
         lcd.print("Fire Detected");
-
+        delay(1000);
         analogWrite(Green,0);
         analogWrite(Red, Adapt);
         digitalWrite(laser, 1);
@@ -94,12 +94,12 @@ void loop() {
             analogWrite(Red, Adapt);
             
                 if (Fire==0) {
-                    delay(1000);
+                    
                     lcd.setCursor(0, 0);
                     lcd.print("   Alert !!!");
                     lcd.setCursor(0, 1);
                     lcd.print("Fire Detected");
-
+                    delay(1000);
                     analogWrite(Green,0);
                     analogWrite(Red, Adapt);
                     digitalWrite(laser, 1);
@@ -110,16 +110,16 @@ void loop() {
                     delay(1000);
                     motor.setSpeed(128);
                     if (Temp>40) {
-                        motor.setSpeed(0);
-                        delay(1000);
                         lcd.setCursor(0, 0);
                         lcd.print("   Alert !!!");
                         lcd.setCursor(0, 1);
                         lcd.print("Hot Detected");
                         motor.setSpeed(0);
+                        delay(1000);
                         analogWrite(Green,0);
                         analogWrite(Red, Adapt);
                         digitalWrite(laser, 1);
+                        color =analogRead(Red);
                                 }
                     else {
                         if (Distance<15) {
