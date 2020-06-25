@@ -41,4 +41,4 @@
 ### ระบบการทำงาน 
 ![flowchart picture][flowchart]
 
-[flowchart]:  https://github.com/oppotop9/Safety-arcade-game/blob/master/image/FlowCart.png "flowchart"
+[flowchart]:  https://github.com/oppotop9/Safety-arcade-game/blob/master/image/FlowCart%2012.png "flowchart"
