@@ -11,8 +11,12 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 #define laser 13
 int color=Green;
 int Adapt =0;
-int Flame =12;
 int Water =0;
+int Trig = 5;
+int Echo = 6;
+int Flame =12;
+OneWire oneWire(Temperature);
+DallasTemperature sensors(&oneWire);
 
 void setup() {
 pinMode(Red, OUTPUT);
@@ -24,7 +28,7 @@ Serial.begin(9600);
 //analogWrite(Red, 0); 
 analogWrite(Green, 255); // Green
 //analogWrite(Blue, 0); 
-
+sensors.begin();// Temperature
   lcd.init();
   lcd.backlight();
 
@@ -39,12 +43,11 @@ analogWrite(Green, 255); // Green
 void loop() {
   Adapt=analogRead(A2);
   Adapt=Adapt/4;
-  
-  analogWrite(color, Adapt);
-  
-  Water=analogRead(A0);
-  int Fire=digitalRead(Flame);
-  
+  analogWrite(color, Adapt); //ลดเเสง
+  Water=analogRead(A0); //น้ำ
+  int Fire=digitalRead(Flame); // เปลวเพลิง
+  sensors.requestTemperatures(); // อุณหภูมิเรียกใช้งาน
+  double Temp =sensors.getTempCByIndex(0);// เเสดงจำนวน
  
   if(Water>10){
       delay(1000);
@@ -59,22 +62,43 @@ void loop() {
       digitalWrite(laser, 1);
       color =analogRead(Red);
       
-  }
-  else  {
-      if (Fire==0) {
-  delay(1000);
-  lcd.setCursor(0, 0);
-  lcd.print("   Alert !!!");
+                }
+    else  {
+        if (Fire==0) {
+        delay(1000);
+        lcd.setCursor(0, 0);
+        lcd.print("   Alert !!!");
+        lcd.setCursor(0, 1);
+        lcd.print("Fire Detected");
 
-  lcd.setCursor(0, 1);
-  lcd.print("Fire Detected");
+        analogWrite(Green,0);
+        analogWrite(Red, Adapt);
+        digitalWrite(laser, 1);
+        color =analogRead(Red);
+                        }
+        else {
+            if (Temp>35) {
+            analogWrite(Green,Adapt);
+            analogWrite(Red, Adapt);
+    
+                if (Temp>40) {
+                delay(1000);
+                lcd.setCursor(0, 0);
+                lcd.print("   Alert !!!");
+                lcd.setCursor(0, 1);
+                lcd.print("Hot Detected");
 
-  analogWrite(Green,0);
-  analogWrite(Red, Adapt);
-  digitalWrite(laser, 1);
-      }
-       else {
-           
+                analogWrite(Green,0);
+                analogWrite(Red, Adapt);
+                digitalWrite(laser, 1);
+                                }
+                else {
+                
+                }
+           }
+            else {
+                
+            }
        }
   }
   
