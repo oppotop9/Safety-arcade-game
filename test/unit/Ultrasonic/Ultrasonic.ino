@@ -1,5 +1,5 @@
-const int pingPin = 5;
-int inPin = 6;
+const int pingPin = 5; //ปล่อย
+int inPin = 6;  //รับ
 
 
 void setup() {
@@ -35,4 +35,15 @@ long microsecondsToCentimeters(long microseconds)
 // The ping travels out and back, so to find the distance of the
 // object we take half of the distance travelled.
 return microseconds / 29 / 2;
+
+digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance = duration * 0.034 / 2;
+  Serial.print("Distance: ");
+  Serial.println(distance);
+  delay(100);
 }

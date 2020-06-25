@@ -1,5 +1,5 @@
 
- int Flame = 2; 
+ int Flame = 12; 
 
 
   void setup()
