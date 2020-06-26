@@ -65,7 +65,7 @@ void loop() {
         lcd.setCursor(0, 0);
         lcd.print("   Alert !!! ");
         lcd.setCursor(0, 1);
-        lcd.print("Water Detected");
+        lcd.print("Water Detected   ");
         delay(1000);
         analogWrite(Green,0);
         analogWrite(Red, Adapt);
@@ -83,7 +83,7 @@ void loop() {
         lcd.setCursor(0, 0);
         lcd.print("   Alert !!! ");
         lcd.setCursor(0, 1);
-        lcd.print("Fire Detected");
+        lcd.print("Fire Detected    ");
         delay(1000);
         analogWrite(Green,0);
         analogWrite(Red, Adapt);
@@ -106,7 +106,7 @@ void loop() {
                     lcd.setCursor(0, 0);
                     lcd.print("   Alert !!! ");
                     lcd.setCursor(0, 1);
-                    lcd.print("Fire Detected");
+                    lcd.print("Fire Detected   ");
                     delay(1000);
                     analogWrite(Green,0);
                     analogWrite(Red, Adapt);
@@ -125,7 +125,7 @@ void loop() {
                         lcd.setCursor(0, 0);
                         lcd.print("   Alert !!! ");
                         lcd.setCursor(0, 1);
-                        lcd.print("Hot Detected");
+                        lcd.print("Hot Detected   ");
                         motor.setSpeed(0);
                         delay(1000);
                         analogWrite(Green,0);
@@ -143,7 +143,7 @@ void loop() {
                         lcd.setCursor(0, 0);
                         lcd.print("Status < warning >");
                         lcd.setCursor(0, 1);
-                        lcd.print("Beware : Hot");
+                        lcd.print("Beware : Hot   ");
                                         }
                             }
                         }
