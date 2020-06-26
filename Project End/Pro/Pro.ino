@@ -59,12 +59,11 @@ void loop() {
     digitalWrite(Trig, LOW);
     Time = pulseIn(Echo, HIGH);
     Distance = Time * 0.034 / 2; //S=T*0.034
-    
-  if(Water>10){
+    Serial.println("Water = "+String(Water)+" Temp = "+String(Temp)+" Distance = "+String(Distance)+" Flame = "+String(Fire)+""); //for check
+    if(Water>20){
       
         lcd.setCursor(0, 0);
-        lcd.print("   Alert !!!");
-
+        lcd.print("   Alert !!! ");
         lcd.setCursor(0, 1);
         lcd.print("Water Detected");
         delay(1000);
@@ -72,13 +71,17 @@ void loop() {
         analogWrite(Red, Adapt);
         digitalWrite(laser, 1);
         color =analogRead(Red);
-        
+        for (int n=1; n<=100; n++) {
+                        delay(5000);
+                        lcd.setCursor(0, 0);
+                        lcd.print("   Restart !!! ");
+                        }
                 }
     else  {
         if (Fire==0) {
         
         lcd.setCursor(0, 0);
-        lcd.print("   Alert !!!");
+        lcd.print("   Alert !!! ");
         lcd.setCursor(0, 1);
         lcd.print("Fire Detected");
         delay(1000);
@@ -86,6 +89,11 @@ void loop() {
         analogWrite(Red, Adapt);
         digitalWrite(laser, 1);
         color =analogRead(Red);
+        for (int n=1; n<=100; n++) {
+                        delay(5000);
+                        lcd.setCursor(0, 0);
+                        lcd.print("   Restart !!! ");
+                        }
                         }
         else {
             if (Temp>35) {
@@ -96,7 +104,7 @@ void loop() {
                 if (Fire==0) {
                     
                     lcd.setCursor(0, 0);
-                    lcd.print("   Alert !!!");
+                    lcd.print("   Alert !!! ");
                     lcd.setCursor(0, 1);
                     lcd.print("Fire Detected");
                     delay(1000);
@@ -104,14 +112,18 @@ void loop() {
                     analogWrite(Red, Adapt);
                     digitalWrite(laser, 1);
                     color =analogRead(Red);
-                
+                        for (int n=1; n<=100; n++) {
+                        delay(5000);
+                        lcd.setCursor(0, 0);
+                        lcd.print("   Restart !!! ");
+                        }
                             }
                 else {
                     delay(1000);
                     motor.setSpeed(128);
                     if (Temp>40) {
                         lcd.setCursor(0, 0);
-                        lcd.print("   Alert !!!");
+                        lcd.print("   Alert !!! ");
                         lcd.setCursor(0, 1);
                         lcd.print("Hot Detected");
                         motor.setSpeed(0);
@@ -120,6 +132,11 @@ void loop() {
                         analogWrite(Red, Adapt);
                         digitalWrite(laser, 1);
                         color =analogRead(Red);
+                        for (int n=1; n<=100; n++) {
+                        delay(5000);
+                        lcd.setCursor(0, 0);
+                        lcd.print("   Restart !!! ");
+                        }
                                 }
                     else {
                         if (Distance<15) {
