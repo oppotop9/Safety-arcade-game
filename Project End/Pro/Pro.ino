@@ -48,7 +48,7 @@ void loop() {
   Adapt=analogRead(A2);
   Adapt=Adapt/4;
   analogWrite(color, Adapt); //ลดเเสง
-  Water=analogRead(A0); //น้ำ
+  //Water=analogRead(A0); //น้ำ
   int Fire=digitalRead(Flame); // เปลวเพลิง
   sensors.requestTemperatures(); // อุณหภูมิเรียกใช้งาน
   double Temp =sensors.getTempCByIndex(0);// เเสดงจำนวน
@@ -59,7 +59,7 @@ void loop() {
     digitalWrite(Trig, LOW);
     Time = pulseIn(Echo, HIGH);
     Distance = Time * 0.034 / 2; //S=T*0.034
-    Serial.println("Water = "+String(Water)+" Temp = "+String(Temp)+" Distance = "+String(Distance)+" Flame = "+String(Fire)+""); //for check
+    //Serial.println("Water = "+String(Water)+" Temp = "+String(Temp)+" Distance = "+String(Distance)+" Flame = "+String(Fire)+""); //for check
     if(Water>20){
       
         lcd.setCursor(0, 0);
@@ -71,6 +71,7 @@ void loop() {
         analogWrite(Red, Adapt);
         digitalWrite(laser, 1);
         color =analogRead(Red);
+        motor.setSpeed(0);
         for (int n=1; n<=100; n++) {
                         delay(5000);
                         lcd.setCursor(0, 0);
@@ -89,6 +90,7 @@ void loop() {
         analogWrite(Red, Adapt);
         digitalWrite(laser, 1);
         color =analogRead(Red);
+        motor.setSpeed(0);
         for (int n=1; n<=100; n++) {
                         delay(5000);
                         lcd.setCursor(0, 0);
@@ -96,12 +98,13 @@ void loop() {
                         }
                         }
         else {
-            if (Temp>35) {
+            if (Temp>34) {
             delay(1000);
             analogWrite(Green,Adapt);// Yellow
             analogWrite(Red, Adapt);
             
                 if (Fire==0) {
+
                     
                     lcd.setCursor(0, 0);
                     lcd.print("   Alert !!! ");
@@ -112,6 +115,7 @@ void loop() {
                     analogWrite(Red, Adapt);
                     digitalWrite(laser, 1);
                     color =analogRead(Red);
+                    motor.setSpeed(0);
                         for (int n=1; n<=100; n++) {
                         delay(5000);
                         lcd.setCursor(0, 0);
